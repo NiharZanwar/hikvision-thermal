@@ -18,12 +18,12 @@ def receive_data():
         global config
         try:
 
-            print(request.files)
-            print(request.form)
+            # print(request.files)
+            # print(request.form)
 
             for alarm_type in config["allowed_alarms"]:
                 if str(request.form.get(alarm_type)) != 'None':
-                    print(alarm_type)
+                    # print(alarm_type)
                     handle_alarm(config, request.form.get(alarm_type), alarm_type, request)
                     return ''
                 else:
