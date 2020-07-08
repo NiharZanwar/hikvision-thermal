@@ -1,4 +1,4 @@
-from flask import Flask, request, send_file, Response
+from flask import Flask, request, Response
 from functions import *
 from time import sleep
 import os
@@ -54,9 +54,14 @@ def get_image(_id, image_type):
 
 if __name__ == '__main__':
     global config
+
+    if 'logs' not in os.listdir("../../data"):
+        os.mkdir('../../data/logs')
+
     while True:
         config = get_config()
         if config == 0:
+            make_log("error while reading config file")
             print("error while reading config file")
         else:
             break

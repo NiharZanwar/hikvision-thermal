@@ -5,12 +5,15 @@ from datetime import datetime
 import base64
 import bson
 
+log_dir = '../../data/logs'
+
 
 def get_config():
     try:
-        return json.loads(open("./config/config.json", "r").read())
+        return json.loads(open("../../data/config.json", "r").read())
     except Exception as error:
         print("error - {}".format(error))
+        make_log("error - {}".format(error))
 
 
 def connection(config):
@@ -21,6 +24,7 @@ def connection(config):
         return client
     except Exception as error:
         print("error - {}".format(error))
+        make_log("error - {}".format(error))
         return 0
 
 
@@ -31,6 +35,7 @@ def add_transaction(client, data, collection_name):
         return insert_id
     except Exception as error:
         print("error while inserting into database - {}".format(error))
+        make_log("error while inserting into database - {}".format(error))
         return 0
 
 
@@ -81,6 +86,7 @@ def handle_alarm(config, alarm, alarm_type, request):
             return _id
     except Exception as error:
         print("error while handling alarm")
+        make_log("error while handling alarm - {}".format(error))
         return 0
 
 
@@ -100,6 +106,10 @@ def add_image(path, taginfo, config):
         print("error - {}".format(error))
         return 0
 
+def make_log(string):
+    string += '\n'
+    with open(log_dir + '/transaction_log.txt', 'a+') as log:
+        log.write(string)
 
 if __name__ == '__main__':
     add_transaction(connection(get_config()), {"hello": 1}, 'test')
