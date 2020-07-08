@@ -54,9 +54,14 @@ def get_image(_id, image_type):
 
 if __name__ == '__main__':
     global config
+
+    if 'logs' not in os.listdir("./"):
+        os.mkdir('./logs')
+
     while True:
         config = get_config()
         if config == 0:
+            make_log("error while reading config file")
             print("error while reading config file")
         else:
             break
