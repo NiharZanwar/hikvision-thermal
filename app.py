@@ -67,4 +67,4 @@ if __name__ == '__main__':
             break
         sleep(3)
 
-    app.run(host='0.0.0.0', port=int(config["port"]))
+    app.run(host='0.0.0.0',debug=True, port=int(config["port"]))
