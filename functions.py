@@ -14,6 +14,7 @@ def get_config():
     except Exception as error:
         print("error - {}".format(error))
         make_log("error - {}".format(error))
+        return 0
 
 
 def connection(config):
