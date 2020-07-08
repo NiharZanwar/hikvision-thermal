@@ -1,0 +1,38 @@
+{
+  "port": 8091,
+  "db_ip": "172.22.0.2",
+  "db_port": 27017,
+  "db_name": "thermal",
+  "db_uname": "root",
+  "db_pass": "root",
+  "allowed_alarms": [
+    "faceCapture",
+    "TMPA",
+    "TMA"
+  ],
+  "faceCapture": {
+    "alarm_name": "face_detect",
+    "read_type": "json",
+    "has_image": false
+
+  },
+  "VMD": {
+    "alarm_name": "motion_detect",
+    "read_type": "xml",
+    "has_image": true,
+    "keyword": ["motion", "detection"]
+  },
+  "TMPA": {
+    "alarm_name": "temp_pre_alarm",
+    "read_type": "xml",
+    "has_image": true,
+    "keyword": ["pre", "alarm"]
+  },
+   "TMA": {
+    "alarm_name": "temp_alarm",
+    "read_type": "xml",
+    "has_image": true,
+    "keyword": ["pre", "alarm"]
+  }
+}
+
